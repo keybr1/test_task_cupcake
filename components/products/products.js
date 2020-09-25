@@ -14,6 +14,8 @@ class Products {
       element.classList.remove(this.classNameActive);
       element.innerHTML = this.labelAdd;
     }
+
+    headerPage.render(products.length);
   }
 
   render() {
@@ -34,7 +36,7 @@ class Products {
           <span class="products-element__title">${title}</span>
           <span class="products-element__subtitle">${subtitle}</span>
           <img class="products-element__img" src="${image}" />
-          <span class="products-element__price">🔥 ${price} USD</span>
+          <span class="products-element__price">🔥 ${price.toLocaleString()} USD</span>
           <a class="products-element__url" href="${url}" target="_blank">link to original</a>
           <button class="products-element__btn${activeClass}" onclick="productsPage.handleSetLocationStorage(this, '${isbn13}');">
           ${activeText}</button>
