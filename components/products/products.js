@@ -18,10 +18,15 @@ class Products {
     headerPage.render(products.length);
   }
 
+  handlerOpenModalPage() {
+    modalPage.render();
+  }
+
   render() {
     const productsStore = localStorageUtil.getProducts();
     let htmlCatalog = "";
-    catalog.forEach(({ title, subtitle, isbn13, price, image, url }) => {
+
+    CATALOG.forEach(({ isbn13, title, price, image }) => {
       let activeClass = "";
       let activeText = "";
 
@@ -31,13 +36,16 @@ class Products {
         activeClass = " " + this.classNameActive;
         activeText = this.labelRemove;
       }
+
       htmlCatalog += `
         <li class="products-element">
           <span class="products-element__title">${title}</span>
-          <span class="products-element__subtitle">${subtitle}</span>
           <img class="products-element__img" src="${image}" />
-          <span class="products-element__price">🔥 ${price.toLocaleString()} USD</span>
-          <a class="products-element__url" href="${url}" target="_blank">link to original</a>
+          <a href="#" class="products-element__modal" onclick="productsPage.handlerOpenModalPage();">More details</a>
+          <div class="products-element__wrapper">
+          <span class="products-element__price">🔥 ${price.toLocaleString()} USD</span> 
+          <input type="number" class="products-element__count" name="qty" placeholder="qty"/> 
+          </div>
           <button class="products-element__btn${activeClass}" onclick="productsPage.handleSetLocationStorage(this, '${isbn13}');">
           ${activeText}</button>
         </li>
@@ -55,4 +63,3 @@ class Products {
 }
 
 const productsPage = new Products();
-productsPage.render();

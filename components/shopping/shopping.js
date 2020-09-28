@@ -8,7 +8,7 @@ class Shopping {
     let htmlCatalog = "";
     let sumCatalog = 0;
 
-    catalog.forEach(({ title, isbn13, price }) => {
+    CATALOG.forEach(({ isbn13, title, price }) => {
       if (productsStore.indexOf(isbn13) !== -1) {
         htmlCatalog += `
             <tr>
